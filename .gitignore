@@ -82,3 +82,6 @@ ipython_config.py
 
 # Outputs folder
 outputs/*
+
+# VS code 
+.DS_Store
