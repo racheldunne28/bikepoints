@@ -3,6 +3,7 @@ import os
 import dotenv
 from fingertips_py import retrieve_data
 import geopandas
+import pandas as pd
 import requests
 from requests.auth import HTTPBasicAuth
 
@@ -46,6 +47,12 @@ def get_london_adult_obesity():
     return obesity_latest
 
 
+def get_pop():
+    pop = pd.read_csv('data/TS007-2021-3.csv')
+    total_pop = pop[['Lower tier local authorities Code', 'Observation']].groupby('Lower tier local authorities Code').sum()
+    return total_pop
+
+
 def get_joined_obesity_geog_data(ldn_obesity, ldn_geog):
     ldn_obesity.rename({'Area Code': 'LAD22CD'}, axis=1, inplace=True)
     ldn_obesity['LAD22CD'] = ldn_obesity['LAD22CD'].astype(str)
@@ -60,4 +67,5 @@ if __name__ == "__main__":
     ldn_obesity = get_london_adult_obesity()
     ldn_geog = get_london_las()
     joined = get_joined_obesity_geog_data(ldn_obesity, ldn_geog)
+    pop = get_pop()
     print(joined)
