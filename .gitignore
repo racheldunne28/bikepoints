@@ -81,7 +81,7 @@ profile_default/
 ipython_config.py
 
 # Outputs folder
-outputs/*
+outputs/*.html
 
 # VS code 
 .DS_Store
