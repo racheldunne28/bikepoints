@@ -16,7 +16,7 @@ def gen_map(locations, ldn_geog, ldn_obesity, pop, imd):
         fill_color="YlGnBu",
         fill_opacity=0.7,
         line_opacity=0.2,
-        legend_name="Percentage of adults overweight or obesity",
+        legend_name="Percentage of adults overweight or obese",
     ).add_to(m)
     ldn_obesity_indexed = ldn_obesity.set_index("LAD22CD")
     for s in cp.geojson.data["features"]:
