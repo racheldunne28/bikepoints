@@ -53,6 +53,13 @@ def get_pop():
     return total_pop
 
 
+def get_deprivation():
+    imd = pd.read_excel('data/File_10_-_IoD2019_Local_Authority_District_Summaries__lower-tier__.xlsx', sheet_name='Health')
+    imd.rename({'Health Deprivation and Disability - Proportion of LSOAs in most deprived 10% nationally ': 'health_deprivation'}, axis=1, inplace=True)
+    imd.set_index('Local Authority District code (2019)', inplace=True)
+    return imd[['health_deprivation']]
+
+
 def get_joined_obesity_geog_data(ldn_obesity, ldn_geog):
     ldn_obesity.rename({'Area Code': 'LAD22CD'}, axis=1, inplace=True)
     ldn_obesity['LAD22CD'] = ldn_obesity['LAD22CD'].astype(str)
@@ -68,4 +75,4 @@ if __name__ == "__main__":
     ldn_geog = get_london_las()
     joined = get_joined_obesity_geog_data(ldn_obesity, ldn_geog)
     pop = get_pop()
-    print(joined)
+    imd = get_deprivation()
