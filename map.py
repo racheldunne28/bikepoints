@@ -28,7 +28,7 @@ def gen_map(locations, ldn_geog, ldn_obesity, pop, imd):
         ] = f"{int(pop.loc[s['properties']['LAD22CD'], 'Observation']):,}"
         s["properties"][
             "health_deprivation"
-        ] = f"{imd.loc[s['properties']['LAD22CD'], 'health_deprivation']:.2%}"
+        ] = f"{imd.loc[s['properties']['LAD22CD'], 'health_deprivation']:.2}"
     folium.GeoJsonTooltip(
         ["LAD22NM", "obesity", "pop", "health_deprivation"],
         aliases=[
